@@ -8,7 +8,11 @@ const server = http.createServer(app);
 app.use(cors());
 
 app.get("/api/hello", (req, res) => {
-    res.send('you have succesfully entered the Garden backend server');
+    res.send('you have sent and recieved a message from the garden server');
+});
+
+app.get("/", (req, res) => {
+    res.send('you have succesfully entered the Garden main side');
 });
 
 const port = process.env.PORT || 3001;

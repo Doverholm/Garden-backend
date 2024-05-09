@@ -9,7 +9,8 @@ const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
         origin: "http://zimplyzudoku.com/",
-        methods: ["GET", "POST"]
+        methods: ["GET", "POST"],
+        allowedHeaders: ['Content-Type', 'Authorization'],
     }
 });
 app.use(cors());

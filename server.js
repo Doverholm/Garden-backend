@@ -1,21 +1,22 @@
 const express = require("express");
 const cors = require('cors');
+const socketIo = require('socket.io');
 const http = require('http');
+const { initGameServer } = require('./gameServer.js');
 
 const app = express();
 const server = http.createServer(app);
-
+const io = socketIo(server, {
+    cors: {
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"]
+    }
+});
 app.use(cors());
-
-app.get("/api/hello", (req, res) => {
-    res.send('you have sent and recieved a message from the garden server');
-});
-
-app.get("/", (req, res) => {
-    res.send('you have succesfully entered the Garden main side');
-});
 
 const port = process.env.PORT || 3001;
 server.listen(port, () => {
     console.log('server started and is listening to port: ', port);
 });
+
+initGameServer(io);

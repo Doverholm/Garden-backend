@@ -50,7 +50,13 @@ const initGameServer = (io) => {
             gameState = {
                 players: playersArray,
                 objects: objectsArray,
-                map: "MAP-garden"
+                map: {
+                    spriteName: 'MAP-garden',
+                    position: {
+                        x: 0,
+                        y: 0
+                    }
+                }
             };
             if (players.get(player.id)) {
                 socket.emit('newPlayerInitialized');
